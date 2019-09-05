@@ -1,33 +1,96 @@
-.App {
+#navbar-element {
+  width: 100%;
+  background-color: rgb(28, 28, 173);
+  display: flex;
+  text-align: center;
+  color: white;
+  white-space: nowrap;
+}
+
+#header {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+#content {
+  width: 85%;
+  margin: auto;
+  margin-top: 50px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+#search-bar {
+  margin: auto;
+}
+
+.navbar-elements {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  margin: auto;
+  vertical-align: -webkit-baseline-middle;
+}
+
+#desc{
+  text-align: center;
+}
+
+.navbar-elements:hover {
+  cursor: pointer;
+  background-color: rgb(62, 62, 196);
+  color: white;
+  text-decoration: none;
+  
+  vertical-align: -webkit-baseline-middle;
+}
+
+img {
+  width: 100%;
+}
+/* 
+a, a:hover {
+  color: white;
+  text-decoration: none;
+  
+  vertical-align: -webkit-baseline-middle;
+} */
+
+#dropdown-basic-button {
+  background-color: inherit;
+  border: none;
+}
+
+#dropdown-basic-button:hover, .dropdown-item:hover {
+  background-color: rgb(62, 62, 196);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+#dropdown-basic-button:active {
+  background: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.dropdown-item {
+  color: white;
+}
+
+.dropdown-menu {
+  background-color: rgb(28, 28, 173);
+}
+
+label{
+  vertical-align: inherit;
+  margin: 0;
+}
+
+.container {
+  display: inline-block;
+  margin-top: 25px;
+  margin-right: 55px;
+  border: 1px solid black;
+}
+
+.container:hover {
+  cursor: pointer;
+}
+
+hr{
+  border-top: 1px solid black;
 }
