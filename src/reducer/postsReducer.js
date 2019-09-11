@@ -1,8 +1,9 @@
-import { FETCH_POSTS_PENDING, FETCH_POSTS_SUCCESS, FETCH_POSTS_ERROR } from '../components/action.js';
+import { FETCH_POSTS_PENDING, FETCH_POSTS_SUCCESS, FETCH_CATEGORIES_SUCCESS, FETCH_PAGES_SUCCESS, FETCH_POSTS_ERROR } from '../components/action.js';
 
 export const initialState = {
   pending: true,
   posts: [],
+  pages: [],
   error: null
 }
 
@@ -19,6 +20,18 @@ export function postsReducer(state = initialState, action) {
         pending: false,
         posts: action.posts
       }
+    case FETCH_PAGES_SUCCESS:
+      return {
+        ...state,
+        pending: false,
+        pages: action.pages
+      }
+    case FETCH_CATEGORIES_SUCCESS:
+      return {
+        ...state,
+        pending: false,
+        categories: action.categories
+      }
     case FETCH_POSTS_ERROR:
       return {
         ...state,
@@ -31,5 +44,7 @@ export function postsReducer(state = initialState, action) {
 }
 
 export const getPosts = state => state.posts;
+export const getPages = state => state.pages;
+export const getCategories = state => state.categories;
 export const getPostsPending = state => state.pending;
 export const getPostsError = state => state.error;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import fetchPostsAction from './fetchPosts.js';
+import { fetchPosts as fetchPostsAction } from './fetchPosts.js';
 import { getPostsError, getPosts, getPostsPending } from '../reducer/postsReducer.js';
 import { bindActionCreators } from 'redux';
 
