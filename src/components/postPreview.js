@@ -2,6 +2,8 @@ import React from 'react';
 
 function PostPreview({ index, data, func }) {
 
+  console.log(data,index);
+
   function strip_html_tags(str) {
     if ((str === null) || (str === ''))
       return false;
@@ -9,8 +11,9 @@ function PostPreview({ index, data, func }) {
       str = str.toString();
     return str.replace(/<[^>]*>/g, '');
   }
+
   var temp = strip_html_tags(data[index].content.rendered.slice(0, 199));
-  temp = [...temp, "...."];
+  temp = [...temp, ".... read more"];
 
   return (
     <div id={"container" + index} className="container col-sm-5">

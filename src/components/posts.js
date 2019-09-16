@@ -6,13 +6,19 @@ import { bindActionCreators } from 'redux';
 
 class PostPage extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { posts } = this.props;
-    var index = this.props.match.params.postsId;
+    var id = this.props.match.params.postsId;
+    var index;
+
+    for (var i = 0; i < posts.length; i++) {
+      if(id == posts[i].id) {
+        index = i;
+        break;
+      }
+    }
+
+    console.log(posts, id, index);
     return (
       <div id="content">
         <h2 dangerouslySetInnerHTML={{ __html: posts[index].title.rendered }}></h2>
@@ -21,7 +27,6 @@ class PostPage extends React.Component {
     )
   }
 }
-
 
 const mapStateToProps = state => ({
   error: getPostsError(state),

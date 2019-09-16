@@ -75,6 +75,10 @@ a, a:hover {
   background-color: rgb(28, 28, 173);
 }
 
+label:hover {
+  cursor: pointer;
+}
+
 label{
   vertical-align: inherit;
   margin: 0;

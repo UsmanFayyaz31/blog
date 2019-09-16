@@ -1,15 +1,17 @@
 import React from 'react';
 import '../App.css';
-import { DropdownButton, Dropdown } from 'react-bootstrap';
+import { DropdownButton } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { fetchPosts as fetchPostsAction, fetchPages as fetchPagesAction, fetchCategories as fetchCategoriesAction } from './fetchPosts.js';
 import { getPostsError, getPosts, getPages, getCategories, getPostsPending } from '../reducer/postsReducer.js';
 import { bindActionCreators } from 'redux';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import Home from './home';
-import * as Constants from '../constants/index'
+import DropdownCategories from './DropdownCategories';
+import * as Constants from '../constants/index';
 import PostPage from './posts';
 import Pages from './pages';
+import categoriesPage from './categoriesPage';
 
 class Body extends React.Component {
   constructor(props) {
@@ -20,10 +22,11 @@ class Body extends React.Component {
   componentWillMount() {
     const { fetchPosts, fetchPages, fetchCategories } = this.props;
     const getPosts = `${Constants.appUrl}posts`;
-    fetchPosts(getPosts);
     const getPages = `${Constants.appUrl}pages`;
-    fetchPages(getPages);
     const getCategories = `${Constants.appUrl}categories`;
+
+    fetchPosts(getPosts);
+    fetchPages(getPages);
     fetchCategories(getCategories);
   }
 
@@ -37,7 +40,7 @@ class Body extends React.Component {
 
   render() {
     const { posts, pages, categories } = this.props;
-    console.log(categories);
+    // console.log(categories);
     if (this.shouldComponentRender()) {
       return (<div></div>);
     }
@@ -56,9 +59,7 @@ class Body extends React.Component {
 
               <div className="col-sm-2 navbar-elements">
                 <DropdownButton id="dropdown-basic-button" title="Categories">
-                  <Dropdown.Item href="#/action-1">{categories[2].name}</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">{categories[4].name}</Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">{categories[7].name}</Dropdown.Item>
+                  <DropdownCategories categories={categories} />
                 </DropdownButton>
               </div>
               <input id="search-bar" placeholder="search" className="col-sm-2"></input>
@@ -70,6 +71,7 @@ class Body extends React.Component {
           <Route path={"/termsOfService"} component={() => <Pages pages={pages[3]} />} />
           <Route path={"/codeOfConduct"} component={() => <Pages pages={pages[5]} />} />
           <Route exact path={"/"} component={() => <Home posts={posts} />} />
+          <Route path="/category=:catId" component={categoriesPage}/>
           <Route path="/posts=:postsId" component={PostPage} />
         </Switch>
       </Router>
