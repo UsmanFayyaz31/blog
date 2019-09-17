@@ -32,13 +32,15 @@ class CategoryPage extends React.Component {
   render() {
     const { categories } = this.props;
     var index = this.props.match.params.catId;
-
+    var temp = `posts`;
 
     return (
-      <div id="content">
-        <h4>{categories[index].name}</h4>
-        {(this.state.data !== null) ? <Home posts={this.state.data} /> : ""}
+
+      <div>
+        <h4 id="content">{categories[index].name}</h4>
+        {(this.state.data !== null) ? <Home posts={this.state.data} address={temp} /> : ""}
       </div>
+      
     )
   }
 }

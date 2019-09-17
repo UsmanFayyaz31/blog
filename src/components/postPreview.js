@@ -2,8 +2,6 @@ import React from 'react';
 
 function PostPreview({ index, data, func }) {
 
-  console.log(data,index);
-
   function strip_html_tags(str) {
     if ((str === null) || (str === ''))
       return false;

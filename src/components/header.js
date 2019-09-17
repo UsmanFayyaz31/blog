@@ -39,43 +39,55 @@ class Body extends React.Component {
   }
 
   render() {
+    var temp, temp1;
     const { posts, pages, categories } = this.props;
-    // console.log(categories);
     if (this.shouldComponentRender()) {
       return (<div></div>);
     }
 
-    return (
-      <Router>
-        <div>
-          <div id="header">
-            <div>
-              <h1>My Blog</h1>
-            </div>
-            <div id="navbar-element">
-              <Link className="col-sm-2 navbar-elements" to={"/"}><label>Home</label></Link>
-              <Link className="col-sm-2 navbar-elements" to={"/termsOfService"}><label>Terms Of Services</label></Link>
-              <Link className="col-sm-2 navbar-elements" to={"/codeOfConduct"}><label>Code Of Conduct</label></Link>
+    if (pages !== null) {
+      temp = pages[3].id;
+      temp1 = pages[5].id;
+    }
 
-              <div className="col-sm-2 navbar-elements">
-                <DropdownButton id="dropdown-basic-button" title="Categories">
-                  <DropdownCategories categories={categories} />
-                </DropdownButton>
+    if (posts !== null && pages !== null) {
+      return (
+        <Router>
+          <div>
+            <div id="header">
+              <div>
+                <h1>My Blog</h1>
               </div>
-              <input id="search-bar" placeholder="search" className="col-sm-2"></input>
+              <div id="navbar-element">
+                <Link className="col-sm-2 navbar-elements" to={"/blog"}><label>Home</label></Link>
+                <Link className="col-sm-2 navbar-elements" to={`/page=${temp}`}><label>Terms Of Services</label></Link>
+                <Link className="col-sm-2 navbar-elements" to={`/page=${temp1}`}><label>Code Of Conduct</label></Link>
+
+                <div className="col-sm-2 navbar-elements">
+                  <DropdownButton id="dropdown-basic-button" title="Categories">
+                    <DropdownCategories categories={categories} />
+                  </DropdownButton>
+                </div>
+                <input id="search-bar" placeholder="search" className="col-sm-2"></input>
+              </div>
             </div>
           </div>
-        </div>
 
-        <Switch>
-          <Route path={"/termsOfService"} component={() => <Pages pages={pages[3]} />} />
-          <Route path={"/codeOfConduct"} component={() => <Pages pages={pages[5]} />} />
-          <Route exact path={"/"} component={() => <Home posts={posts} />} />
-          <Route path="/category=:catId" component={categoriesPage}/>
-          <Route path="/posts=:postsId" component={PostPage} />
-        </Switch>
-      </Router>
-    )
+          <Switch>
+            <Route path={`/page=${temp}`} component={() => <Pages index={temp} />} />
+            <Route path={`/page=${temp1}`} component={() => <Pages index={temp1} />} />
+            <Route exact path={"/"} component={() => <Home posts={posts} address="posts" />} />
+            <Route exact path={"/blog"} component={() => <Home posts={posts} address="posts" />} />
+            <Route exact path="/category=:catId" component={categoriesPage} />
+            <Route exact path="/posts=:postsId" component={PostPage} />
+          </Switch>
+        </Router>
+      )
+    } else {
+      return (
+        <div></div>
+      )
+    }
   }
 }
 

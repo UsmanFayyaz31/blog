@@ -2,8 +2,8 @@ import { FETCH_POSTS_PENDING, FETCH_POSTS_SUCCESS, FETCH_CATEGORIES_SUCCESS, FET
 
 export const initialState = {
   pending: true,
-  posts: [],
-  pages: [],
+  posts: null,
+  pages: null,
   error: null
 }
 
