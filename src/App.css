@@ -26,7 +26,7 @@
 }
 
 /* .category-list{
-  margin: 0px;
+  width: 20%;
 } */
 
 .navbar-elements {
@@ -66,7 +66,13 @@ a, a:hover {
   border: none;
 }
 
-#dropdown-basic-button:hover, .dropdown-item:hover {
+.dropdown-list {
+  color: white;
+  padding: 10px;
+  margin: 0px;
+}
+
+#dropdown-basic-button:hover, .dropdown-item:hover, .dropdown-list:hover {
   background-color: rgb(62, 62, 196);
   color: white;
 }

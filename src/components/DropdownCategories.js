@@ -1,10 +1,10 @@
 import React from 'react';
-import { Dropdown } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const DropdownCategories = ({ categories }) => {
   return (
     categories.map((data, index) => (
-      <Dropdown.Item key={index} href={`/category=${categories[index].id}`}>{categories[index].name}</Dropdown.Item>
+      <Link key={index} to={`/category=${data.id}`}><p className="dropdown-list">{data.name}</p></Link>
     ))
   )
 }

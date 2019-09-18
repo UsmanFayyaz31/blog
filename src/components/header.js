@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { fetchPosts as fetchPostsAction, fetchPages as fetchPagesAction, fetchCategories as fetchCategoriesAction } from './fetchPosts.js';
 import { getPostsError, getPosts, getPages, getCategories, getPostsPending } from '../reducer/postsReducer.js';
 import { bindActionCreators } from 'redux';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import Home from './home';
 import DropdownCategories from './DropdownCategories';
 import * as Constants from '../constants/index';
@@ -79,7 +79,7 @@ class Body extends React.Component {
                   </DropdownButton>
                 </div>
                 <input className="col-sm-2" id="search-bar" placeholder="search" onChange={this.updateInput}></input>
-                <Link id="submit-button" className="navbar-elements" to={`/search=${this.state.inputData}`}><input type="submit"></input></Link>
+                <Link id="submit-button" className="navbar-elements" to={`/search=${this.state.inputData}`}><button>Submit</button></Link>
               </div>
             </div>
           </div>

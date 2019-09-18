@@ -6,7 +6,7 @@ import Home from './home.js';
 class CategoryPage extends React.Component {
   constructor(props) {
     super(props);
-
+    console.log(this.props);
     this.state = {
       data: null,
       isLoading: false,
@@ -14,7 +14,7 @@ class CategoryPage extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentWillReceiveProps() {
     var index = this.props.match.params.catId;
     var url = `${Constants.appUrl}posts?categories=${index}`;
 

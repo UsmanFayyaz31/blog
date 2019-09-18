@@ -1,10 +1,12 @@
 import React from 'react';
 import * as Constants from '../constants/index';
 import Home from './home';
+import { Link } from 'react-router-dom';
 
 class SearchPage extends React.Component {
   constructor(props) {
     super(props);
+    console.log("a");
     this.state = {
       posts: null,
       categories: null,
@@ -13,7 +15,12 @@ class SearchPage extends React.Component {
     };
   }
 
+  componentWillReceiveProps() {
+    console.log("c");
+  }
+
   componentDidMount() {
+    console.log("b");
     var categoryUrl = `${Constants.appUrl}categories?search=${this.props.match.params.searchQuery}`;
     var postUrl = `${Constants.appUrl}posts?search=${this.props.match.params.searchQuery}`;
 
@@ -37,7 +44,7 @@ class SearchPage extends React.Component {
           <div id="content">
             {(this.state.categories.length === 0) ? <h2>No Category Found.</h2> : <h2>Categories:</h2>}
             {this.state.categories.map((data, index) => (
-              <a key={index} href={`/category=${data.id}`}><h4 className="category-list">{data.name}</h4></a>
+              <Link key={index} to={`/category=${data.id}`}><h4 className="category-list">{data.name}</h4></Link>
             ))}
             <h2>Posts:</h2>
           </div>
