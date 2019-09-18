@@ -13,7 +13,6 @@ class CodeOfConduct extends React.Component {
   }
 
   componentDidMount() {
-
     var url = `${Constants.appUrl}pages/${this.state.index}`;
 
     this.setState({ isLoading: true });

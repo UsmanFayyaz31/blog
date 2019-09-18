@@ -9,17 +9,25 @@
 
 #header {
   text-align: center;
+  margin-bottom: 50px;
 }
 
-#content {
+#content,.template {
   width: 85%;
   margin: auto;
-  margin-top: 50px;
 }
 
 #search-bar {
   margin: auto;
 }
+
+#submit-button {
+  padding: 0px;
+}
+
+/* .category-list{
+  margin: 0px;
+} */
 
 .navbar-elements {
   color: white;

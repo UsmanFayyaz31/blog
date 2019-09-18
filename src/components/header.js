@@ -12,11 +12,21 @@ import * as Constants from '../constants/index';
 import PostPage from './posts';
 import Pages from './pages';
 import categoriesPage from './categoriesPage';
+import SearchPage from './searchPage';
 
 class Body extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      inputData: ""
+    }
     this.shouldComponentRender = this.shouldComponentRender.bind(this);
+    this.updateInput = this.updateInput.bind(this);
+  }
+
+  updateInput(event) {
+    event.preventDefault();
+    this.setState({ inputData: event.target.value })
   }
 
   componentWillMount() {
@@ -68,7 +78,8 @@ class Body extends React.Component {
                     <DropdownCategories categories={categories} />
                   </DropdownButton>
                 </div>
-                <input id="search-bar" placeholder="search" className="col-sm-2"></input>
+                <input className="col-sm-2" id="search-bar" placeholder="search" onChange={this.updateInput}></input>
+                <Link id="submit-button" className="navbar-elements" to={`/search=${this.state.inputData}`}><input type="submit"></input></Link>
               </div>
             </div>
           </div>
@@ -80,6 +91,7 @@ class Body extends React.Component {
             <Route exact path={"/blog"} component={() => <Home posts={posts} address="posts" />} />
             <Route exact path="/category=:catId" component={categoriesPage} />
             <Route exact path="/posts=:postsId" component={PostPage} />
+            <Route exact path="/search=:searchQuery" component={SearchPage} />
           </Switch>
         </Router>
       )

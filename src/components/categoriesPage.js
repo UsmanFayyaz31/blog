@@ -1,8 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { fetchCategories as fetchCategoriesAction } from './fetchPosts.js';
-import { getPostsError, getCategories, getPostsPending } from '../reducer/postsReducer.js';
-import { bindActionCreators } from 'redux';
 import * as Constants from '../constants/index';
 import Home from './home.js';
 
@@ -10,6 +6,7 @@ import Home from './home.js';
 class CategoryPage extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       data: null,
       isLoading: false,
@@ -18,9 +15,9 @@ class CategoryPage extends React.Component {
   }
 
   componentDidMount() {
-    const { categories } = this.props;
     var index = this.props.match.params.catId;
-    var url = `${Constants.appUrl}posts?categories=${categories[index].id}`;
+    var url = `${Constants.appUrl}posts?categories=${index}`;
+
 
     this.setState({ isLoading: true });
     fetch(url)
@@ -30,32 +27,21 @@ class CategoryPage extends React.Component {
   }
 
   render() {
-    const { categories } = this.props;
-    var index = this.props.match.params.catId;
     var temp = `posts`;
 
-    return (
-
-      <div>
-        <h4 id="content">{categories[index].name}</h4>
-        {(this.state.data !== null) ? <Home posts={this.state.data} address={temp} /> : ""}
-      </div>
-      
-    )
+    if (this.state.data !== null) {
+      return (
+        <div>
+          <h4 id="content">{this.state.data.name}</h4>
+          {(this.state.data !== null) ? <Home posts={this.state.data} address={temp} /> : ""}
+        </div>
+      )
+    } else {
+      return (
+        <div></div>
+      )
+    }
   }
 }
 
-const mapStateToProps = state => ({
-  error: getPostsError(state),
-  categories: getCategories(state),
-  pending: getPostsPending(state)
-})
-
-const mapDispatchToProps = dispatch => bindActionCreators({
-  fetchCategories: fetchCategoriesAction
-}, dispatch)
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CategoryPage);
+export default CategoryPage;
