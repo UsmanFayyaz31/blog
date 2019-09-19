@@ -29,7 +29,7 @@ class Body extends React.Component {
     this.setState({ inputData: event.target.value })
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { fetchPosts, fetchPages, fetchCategories } = this.props;
     const getPosts = `${Constants.appUrl}posts`;
     const getPages = `${Constants.appUrl}pages`;
@@ -52,7 +52,7 @@ class Body extends React.Component {
     var temp, temp1;
     const { posts, pages, categories } = this.props;
     if (this.shouldComponentRender()) {
-      return (<div></div>);
+      return (<div>d</div>);
     }
 
     if (pages !== null) {
@@ -97,7 +97,7 @@ class Body extends React.Component {
       )
     } else {
       return (
-        <div></div>
+        <div className="loader"></div>
       )
     }
   }

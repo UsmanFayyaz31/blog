@@ -31,7 +31,7 @@ class CodeOfConduct extends React.Component {
         </div>
       )
     } else {
-      return <div></div>
+      return (<div className="loader"></div>)
     }
   }
 }

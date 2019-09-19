@@ -34,7 +34,7 @@ class PostPage extends React.Component {
       )
     } else {
       return (
-        <div></div>
+        <div className="loader"></div>
       )
     }
   }

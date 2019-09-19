@@ -15,11 +15,11 @@ function PostPreview({ index, data, func }) {
 
   return (
     <div id={"container" + index} className="container col-sm-5">
-      <div id="title-container">
+      <div className="title-container">
         <h5 id="title-of-post" dangerouslySetInnerHTML={{ __html: data[index].title.rendered }}></h5>
       </div>
       <hr />
-      <p>{temp}</p>
+      <p className="post-description">{temp}</p>
     </div>
   )
 }
