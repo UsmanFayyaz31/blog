@@ -10,11 +10,12 @@ function PostPreview({ index, data, func }) {
     return str.replace(/<[^>]*>/g, '');
   }
 
-  var temp = strip_html_tags(data[index].content.rendered.slice(0, 199));
+  var temp = strip_html_tags(data[index].content.rendered);
+  temp = temp.slice(0, 199);
   temp = [...temp, ".... read more"];
 
   return (
-    <div id={"container" + index} className="container col-sm-5">
+    <div id={"container" + index} className="container col-xs-12 col-md-5">
       <div className="title-container">
         <h5 id="title-of-post" dangerouslySetInnerHTML={{ __html: data[index].title.rendered }}></h5>
       </div>

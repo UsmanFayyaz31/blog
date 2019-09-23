@@ -1,11 +1,10 @@
 import React from 'react';
 import '../App.css';
-import { DropdownButton } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { fetchPosts as fetchPostsAction, fetchPages as fetchPagesAction, fetchCategories as fetchCategoriesAction } from './fetchPosts.js';
 import { getPostsError, getPosts, getPages, getCategories, getPostsPending } from '../reducer/postsReducer.js';
 import { bindActionCreators } from 'redux';
-import { HashRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Route, Link, Switch } from 'react-router-dom';
 import Home from './home';
 import DropdownCategories from './DropdownCategories';
 import * as Constants from '../constants/index';
@@ -18,9 +17,11 @@ class Body extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputData: ""
+      inputData: "",
+      isSearch: false
     }
     this.shouldComponentRender = this.shouldComponentRender.bind(this);
+    this.handleButton = this.handleButton.bind(this);
     this.updateInput = this.updateInput.bind(this);
   }
 
@@ -48,11 +49,23 @@ class Body extends React.Component {
     return true;
   }
 
+  handleButton(event) {
+    if (event.key === "Enter") {
+      this.setState({
+        isSearch: true
+      });
+      this.setState({
+        isSearch: false
+      });
+    }
+  }
+
   render() {
+    onkeypress = this.handleButton;
     var temp, temp1;
     const { posts, pages, categories } = this.props;
     if (this.shouldComponentRender()) {
-      return (<div>d</div>);
+      return (<div></div>);
     }
 
     if (pages !== null) {
@@ -69,21 +82,39 @@ class Body extends React.Component {
                 <h1>My Blog</h1>
               </div>
               <div id="navbar-element">
-                <Link className="col-sm-2 navbar-elements" to={"/blog"}><label>Home</label></Link>
-                <Link className="col-sm-2 navbar-elements" to={`/page=${temp}`}><label>Terms Of Services</label></Link>
-                <Link className="col-sm-2 navbar-elements" to={`/page=${temp1}`}><label>Code Of Conduct</label></Link>
 
-                <div className="col-sm-2 navbar-elements">
-                  <DropdownButton id="dropdown-basic-button" title="Categories">
-                    <DropdownCategories categories={categories} />
-                  </DropdownButton>
+                <Link to={"/blog"}>
+                  <div className="navbar-elements col-sm-12 col-md-2">
+                    <label>Home</label>
+                  </div>
+                </Link>
+
+                <Link to={`/page=${temp}`}>
+                  <div className="navbar-elements col-sm-12 col-md-2">
+                    <label>Terms Of Services</label>
+                  </div>
+                </Link>
+
+                <Link to={`/page=${temp1}`}>
+                  <div className="navbar-elements col-sm-12 col-md-2">
+                    <label>Code Of Conduct</label>
+                  </div>
+                </Link>
+
+
+                <DropdownCategories categories={categories} />
+
+
+                <div className="col-sm-12 col-md-2">
+                  <input id="search-bar" placeholder="search" onChange={this.updateInput}></input>
+                  <Link id="submit-button" className="navbar-elements" to={`/search=${this.state.inputData}`}><button>Submit</button></Link>
                 </div>
-                <input className="col-sm-2" id="search-bar" placeholder="search" onChange={this.updateInput}></input>
-                <Link id="submit-button" className="navbar-elements" to={`/search=${this.state.inputData}`}><button>Submit</button></Link>
+
               </div>
             </div>
           </div>
 
+          {(this.state.isSearch) ? <Redirect to={`/search=${this.state.inputData}`} /> : ""}
           <Switch>
             <Route path={`/page=${temp}`} component={() => <Pages index={temp} />} />
             <Route path={`/page=${temp1}`} component={() => <Pages index={temp1} />} />
@@ -93,6 +124,10 @@ class Body extends React.Component {
             <Route exact path="/posts=:postsId" component={PostPage} />
             <Route exact path="/search=:searchQuery" component={SearchPage} />
           </Switch>
+
+          <div id="footer">
+            <h6 id="footer-desc">The content of this blog is obtained from WPBakery</h6>
+          </div>
         </Router>
       )
     } else {
@@ -122,3 +157,4 @@ export default connect(
   mapDispatchToProps
 )(Body);
 
+// dropdown category list does not disappear after clicking, 2-the postPreview function strip html tags need to be reconfiguired., 3-second timesearch does not provide the correct transition for the new data

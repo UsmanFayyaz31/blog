@@ -1,10 +1,8 @@
 #navbar-element {
   width: 100%;
   background-color: rgb(28, 28, 173);
-  display: flex;
   text-align: center;
   color: white;
-  white-space: nowrap;
 }
 
 #header {
@@ -53,17 +51,12 @@
 img {
   width: 100%;
 }
-/* 
-a, a:hover {
-  color: white;
-  text-decoration: none;
-  
-  vertical-align: -webkit-baseline-middle;
-} */
 
 #dropdown-basic-button {
   background-color: inherit;
   border: none;
+  width: 100%;
+  padding: 12px;
 }
 
 .dropdown-list {
@@ -99,7 +92,6 @@ label:hover {
 }
 
 label{
-  vertical-align: inherit;
   margin: 0;
 }
 
@@ -125,7 +117,7 @@ hr{
 }
 
 .loader {
-  border: 16px solid #f3f3f3;
+  border: 16px solid #dddcdc;
   border-top: 16px solid rgb(28, 28, 173);
   border-bottom: 16px solid rgb(28, 28, 173);
   border-radius: 50%;
@@ -134,4 +126,17 @@ hr{
   animation: spin 2s linear infinite;
   margin: auto;
   vertical-align: middle;
+}
+
+#footer {
+  background-color: rgb(28, 28, 173);
+  color: white;
+  text-align: center;
+  margin-top: 20px;
+  height: 35px;
+}
+
+#footer-desc {
+  margin: 0;
+  padding: 8px;
 }

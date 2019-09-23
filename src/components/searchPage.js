@@ -57,7 +57,7 @@ class SearchPage extends React.Component {
             {<Home posts={this.state.posts} address="posts" />}
           </div>
         )
-      } else { return (<div></div>) }
+      } else { return (<div className="loader"></div>) }
     } else {
       return (
         <div className="loader"></div>
