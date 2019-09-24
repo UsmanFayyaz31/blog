@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { fetchPosts as fetchPostsAction, fetchPages as fetchPagesAction, fetchCategories as fetchCategoriesAction } from './fetchPosts.js';
 import { getPostsError, getPosts, getPages, getCategories, getPostsPending } from '../reducer/postsReducer.js';
 import { bindActionCreators } from 'redux';
-import { BrowserRouter as Router, Redirect, Route, Link, Switch } from 'react-router-dom';
+import { HashRouter as Router, Redirect, Route, Link, Switch } from 'react-router-dom';
 import Home from './home';
 import DropdownCategories from './DropdownCategories';
 import * as Constants from '../constants/index';
@@ -84,28 +84,26 @@ class Body extends React.Component {
               <div id="navbar-element">
 
                 <Link to={"/blog"}>
-                  <div className="navbar-elements col-sm-12 col-md-2">
+                  <div className="navbar-elements col-sm-12 col-lg-2">
                     <label>Home</label>
                   </div>
                 </Link>
 
                 <Link to={`/page=${temp}`}>
-                  <div className="navbar-elements col-sm-12 col-md-2">
+                  <div className="navbar-elements col-sm-12 col-lg-2">
                     <label>Terms Of Services</label>
                   </div>
                 </Link>
 
                 <Link to={`/page=${temp1}`}>
-                  <div className="navbar-elements col-sm-12 col-md-2">
+                  <div className="navbar-elements col-sm-12 col-lg-2">
                     <label>Code Of Conduct</label>
                   </div>
                 </Link>
 
-
                 <DropdownCategories categories={categories} />
 
-
-                <div className="col-sm-12 col-md-2">
+                <div className="col-sm-12 navbar-elements col-lg-4">
                   <input id="search-bar" placeholder="search" onChange={this.updateInput}></input>
                   <Link id="submit-button" className="navbar-elements" to={`/search=${this.state.inputData}`}><button>Submit</button></Link>
                 </div>
