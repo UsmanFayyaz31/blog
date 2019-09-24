@@ -12,7 +12,7 @@ function PostPreview({ index, data, func }) {
 
   var temp = strip_html_tags(data[index].content.rendered);
   temp = temp.slice(0, 199);
-  temp = [...temp, ".... read more"];
+  temp = temp.concat(temp," ....read more");
 
   return (
     <div id={"container" + index} className="container col-xs-12 col-md-5">
@@ -20,7 +20,7 @@ function PostPreview({ index, data, func }) {
         <h5 id="title-of-post" dangerouslySetInnerHTML={{ __html: data[index].title.rendered }}></h5>
       </div>
       <hr />
-      <p className="post-description">{temp}</p>
+      <p className="post-description" dangerouslySetInnerHTML={{ __html: temp }}></p>
     </div>
   )
 }
